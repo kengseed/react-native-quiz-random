@@ -15,5 +15,10 @@ export const Questions: Quiz[] = [
         question: "What is district to outside Bangkok ?",
         answers: ["Patumthani", "Prakanong", "Prawet", "All choice are correct"],
         validAnswer: "Patumthani",
+    },
+    {
+        question: "How is maximum hours per day ?",
+        answers: ["44", "55", "24", "All choice are correct"],
+        validAnswer: "24"
     }
 ];

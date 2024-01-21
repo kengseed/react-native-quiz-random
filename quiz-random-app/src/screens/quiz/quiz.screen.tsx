@@ -1,5 +1,6 @@
 import React, {
-    useState
+    useState,
+    useEffect
 } from "react";
 import {
     View,
@@ -22,39 +23,38 @@ const QuizScreen = (props: screenProp) => {
     //Config state
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [score, setScore] = useState(0);
-    const [isCompleted, setIsCompleted] = useState(false);
 
-    //Set answer state and parse result to next screen
+    //Set current question and score
     const setAnswerState = (value: string) => {
-        if (value === Questions[currentQuestion].validAnswer) {
-            setScore(score + 1);
-        }
+        if (value === Questions[currentQuestion].validAnswer) setScore(score + 1);
 
-        if (currentQuestion < Questions.length - 1) {
-            setCurrentQuestion(currentQuestion + 1);
-        } else {
-            setIsCompleted(true);
-            navigation.navigate("SummaryScreen", { score: score, questions: Questions });
-        }
+        setCurrentQuestion(currentQuestion + 1);
     };
 
-    return (
-        <View style={MainStyle.container}>
-            <Text style={MainStyle.textHeader}>
-                {currentQuestion + 1}.{Questions[currentQuestion].question}
-            </Text>
+    //Go to summary screen if done all questions, and parse results data
+    useEffect(() => {
+        if (currentQuestion > Questions.length - 1) navigation.navigate("SummaryScreen", { score: score, questions: Questions });
+    }, [currentQuestion]);
 
-            {
-                Questions[currentQuestion].answers.map((value, index) => (
-                    <TouchableOpacity key={index} style={styles.option} onPress={() => setAnswerState(value)} >
-                        <Text style={styles.buttonText}>
-                            {value}
-                        </Text>
-                    </TouchableOpacity>
-                ))
-            }
-        </View>
-    );
+    if (currentQuestion < Questions.length) {
+        return (
+            <View style={MainStyle.container}>
+                <Text style={MainStyle.textHeader}>
+                    {currentQuestion + 1}.{Questions[currentQuestion].question}
+                </Text>
+
+                {
+                    Questions[currentQuestion].answers.map((value, index) => (
+                        <TouchableOpacity key={index} style={styles.option} onPress={() => setAnswerState(value)} >
+                            <Text style={styles.buttonText}>
+                                {value}
+                            </Text>
+                        </TouchableOpacity>
+                    ))
+                }
+            </View>
+        );
+    }
 };
 
 const styles = StyleSheet.create({
