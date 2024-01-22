@@ -22,7 +22,7 @@ const WelcomeScreen = (props: screenProp) => {
                 onChangeText={onChangeText}
                 value={text}
             />
-            <Pressable style={MainStyle.button} onPress={() => navigation.navigate('QuizScreen')}>
+            <Pressable style={MainStyle.button} onPress={() => navigation.navigate('QuizScreen', { userName: text })}>
                 <Text style={MainStyle.buttonText}>Start</Text>
             </Pressable>
         </View>

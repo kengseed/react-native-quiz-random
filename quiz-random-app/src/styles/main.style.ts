@@ -14,6 +14,7 @@ export default StyleSheet.create({
         paddingHorizontal: "2%",
         marginLeft: "5%",
         marginRight: "5%",
+        marginBottom: "1%",
         borderRadius: 20
     },
     buttonText: {
@@ -35,7 +36,13 @@ export default StyleSheet.create({
         fontSize: 14,
         fontWeight: 'bold',
         fontStyle: 'italic',
+        marginTop: "5%",
         marginBottom: "5%",
-        marginLeft: "2%"
+        marginLeft: "2%",
+        marginRight: "2%",
+        paddingLeft: 10,
+        paddingVertical: "2%",
+        backgroundColor: "#98AFC7",
+        borderRadius: 5
     }
 });

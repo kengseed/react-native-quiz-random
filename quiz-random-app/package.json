@@ -17,6 +17,7 @@
     "react": "18.2.0",
     "react-native": "0.73.2",
     "react-native-gesture-handler": "^2.14.1",
+    "react-native-leaderboard": "^1.0.6",
     "react-native-reanimated": "^3.6.1"
   },
   "devDependencies": {
@@ -25,6 +26,7 @@
     "@types/jest": "^29.5.11",
     "@types/react": "^18.2.48",
     "@types/react-test-renderer": "^18.0.7",
+    "@types/react-native-leaderboard": "^1.0.6",
     "typescript": "^5.3.3"
   },
   "private": true

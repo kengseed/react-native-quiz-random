@@ -33,7 +33,7 @@ const QuizScreen = (props: screenProp) => {
 
     //Go to summary screen if done all questions, and parse results data
     useEffect(() => {
-        if (currentQuestion > Questions.length - 1) navigation.navigate("SummaryScreen", { score: score, questions: Questions });
+        if (currentQuestion > Questions.length - 1) navigation.navigate("SummaryScreen", { userName: route.params.userName, score: score, questions: Questions });
     }, [currentQuestion]);
 
     if (currentQuestion < Questions.length) {
