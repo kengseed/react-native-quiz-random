@@ -2,6 +2,8 @@
 
 ### Installation
   - Clone repository
+  - Disable OS Firewall
+  - Open file < Your root local folder >/quiz-random-app/src/config/appConfig.ts and change IP address from 192.168.1.71 to your local IP address (Can get IP by command ipconfig)
   - Run command as below
     - npm install
     - npx expo start
