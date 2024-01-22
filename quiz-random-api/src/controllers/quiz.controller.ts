@@ -31,9 +31,9 @@ class QuizController {
     }
 
     getRandomQuestions(req: Request, res: Response, next: NextFunction) {
-        this.dataList = this.shuffleArray(this.dataList);
+        let result: Quiz[] = this.shuffleArray(this.dataList);
 
-        res.json({ data: this.dataList });
+        res.json({ data: result.slice(0, 20) });
     }
 }
 

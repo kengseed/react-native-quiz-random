@@ -1,11 +1,13 @@
 # todo-list
 
 ### Installation
-  
+  - Clone repository
+  - Run command as below
+    - npm install
+    - npx expo start
    
 ### Screen Flow
-  - Winner Screen
-  - Welcome Screen -> Question/Answer Screen -> Score Summary Screen
+  - Welcome Screen -> Question/Answer Screen -> Score Summary Screen (Show Leaderboard)
 
 ### Screen Components
   1. Welcome Screen

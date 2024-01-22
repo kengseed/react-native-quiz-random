@@ -11,7 +11,6 @@ import Winnerboard from "../../components/Winnerboard";
 
 type screenProp = NativeStackScreenProps<RootStackParams, "SummaryScreen">;
 
-
 const SummaryScreen = (props: screenProp) => {
     const { navigation, route } = props;
 

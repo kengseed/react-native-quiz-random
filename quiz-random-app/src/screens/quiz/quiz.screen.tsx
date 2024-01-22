@@ -16,52 +16,67 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParams } from "../navigator-stack-params";
 import { Questions } from "../../data/quiz.data";
 import Quiz from "../../models/quiz.model";
+import KeyValue from "../../models/keyValue.model";
 import MainStyle from "../../styles/main.style";
+import AppConfig from "../../config/appConfig";
 
 type screenProp = NativeStackScreenProps<RootStackParams, "SummaryScreen">;
 
-const shuffleArray = (array: Quiz[]) => {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-
-    return array;
+interface QuizResult {
+    data: Quiz[]
 }
 
 const QuizScreen = (props: screenProp) => {
-    let data = shuffleArray(Questions);
     const { navigation, route } = props;
 
     //Config state
+    const [questionResult, setQuestionResult] = useState<QuizResult>();
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [score, setScore] = useState(0);
     const [refreshing, setRefreshing] = useState(false);
 
     //Set current question and score
-    const setAnswerState = (value: string) => {
-        if (value === data[currentQuestion].validAnswer) setScore(score + 1);
+    const setAnswerState = (data: KeyValue) => {
+        if (data.key === questionResult?.data[currentQuestion].validAnswer) setScore(score + 1);
 
         setCurrentQuestion(currentQuestion + 1);
+
+        //Go to next screen if done all questions
+        if ((questionResult != null) && (currentQuestion >= questionResult?.data.length - 1)) {
+            navigation.navigate("SummaryScreen", { userName: route.params.userName, score: score, questions: questionResult.data });
+        }
     };
 
     const onRefresh = useCallback(() => {
-        data = shuffleArray(data);
-        setCurrentQuestion(0);
-        setScore(0);
-
-        setRefreshing(true);
-        setTimeout(() => {
-            setRefreshing(false);
-        }, 2000);
+        refreshData();
     }, []);
 
-    //Go to summary screen if done all questions, and parse results data
-    useEffect(() => {
-        if (currentQuestion > data.length - 1) navigation.navigate("SummaryScreen", { userName: route.params.userName, score: score, questions: data });
-    }, [currentQuestion]);
+    const refreshData = () => {
+        fetch(AppConfig.baseUrl + "/quiz/randomQuestions")
+            .then((res) => res.json())
+            .then((json) => {
+                setRefreshing(true);
 
-    if (currentQuestion < data.length) {
+                //Cast to strong types
+                let data = JSON.parse(JSON.stringify(json)) as QuizResult;
+
+                //Bind data
+                setQuestionResult(data);
+                setCurrentQuestion(0);
+                setScore(0);
+                setRefreshing(false);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
+    //Async call api and callback to bind UI
+    useEffect(() => {
+        refreshData();
+    }, []);
+
+    if (!refreshing && (questionResult != null) && (currentQuestion < questionResult?.data.length)) {
         return (
             <ScrollView
                 contentContainerStyle={MainStyle.container}
@@ -70,14 +85,14 @@ const QuizScreen = (props: screenProp) => {
                 }
             >
                 <Text style={MainStyle.textHeader}>
-                    {currentQuestion + 1}.{data[currentQuestion].question}
+                    {currentQuestion + 1}.{questionResult?.data[currentQuestion].question}
                 </Text>
 
                 {
-                    data[currentQuestion].answers.map((value, index) => (
-                        <TouchableOpacity key={index} style={styles.option} onPress={() => setAnswerState(value)} >
+                    questionResult?.data[currentQuestion].answers.map((item, index) => (
+                        <TouchableOpacity key={index} style={styles.option} onPress={() => setAnswerState(item)} >
                             <Text style={styles.buttonText}>
-                                {value}
+                                {item.value}
                             </Text>
                         </TouchableOpacity>
                     ))

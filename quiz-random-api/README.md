@@ -2,7 +2,9 @@
 
 ### Installation
   - Clone repository
+  - CD to < Your root local folder >/react-native-quiz-random/quiz-random-api/src
   - Run command as below
+    - npm install
     - npm run build
     - npm start
 
