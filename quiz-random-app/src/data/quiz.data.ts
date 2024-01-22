@@ -17,7 +17,27 @@ export const Questions: Quiz[] = [
         validAnswer: "Patumthani",
     },
     {
-        question: "How is maximum hours per day ?",
+        question: "(a) How is maximum hours per day ?",
+        answers: ["44", "55", "24", "All choice are correct"],
+        validAnswer: "24"
+    },
+    {
+        question: "(b) How is maximum hours per day ?",
+        answers: ["44", "55", "24", "All choice are correct"],
+        validAnswer: "24"
+    },
+    {
+        question: "(c) How is maximum hours per day ?",
+        answers: ["44", "55", "24", "All choice are correct"],
+        validAnswer: "24"
+    },
+    {
+        question: "(d) How is maximum hours per day ?",
+        answers: ["44", "55", "24", "All choice are correct"],
+        validAnswer: "24"
+    },
+    {
+        question: "(4) How is maximum hours per day ?",
         answers: ["44", "55", "24", "All choice are correct"],
         validAnswer: "24"
     }

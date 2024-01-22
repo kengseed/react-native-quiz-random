@@ -32,6 +32,10 @@ export default StyleSheet.create({
         marginLeft: "5%",
         marginRight: "5%"
     },
+    text: {
+        fontSize: 12,
+        marginLeft: "5%"
+    },
     textHeader: {
         fontSize: 14,
         fontWeight: 'bold',

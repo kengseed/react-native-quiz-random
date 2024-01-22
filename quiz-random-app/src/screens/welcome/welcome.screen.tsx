@@ -17,6 +17,7 @@ const WelcomeScreen = (props: screenProp) => {
 
     return (
         <View style={MainStyle.container}>
+            <Text style={MainStyle.text}>Username</Text>
             <TextInput
                 style={MainStyle.input}
                 onChangeText={onChangeText}
