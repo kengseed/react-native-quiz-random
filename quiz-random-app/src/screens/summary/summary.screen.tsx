@@ -1,9 +1,7 @@
 import React from "react";
 import {
     View,
-    StyleSheet,
     Text,
-    Button,
     Pressable
 } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";

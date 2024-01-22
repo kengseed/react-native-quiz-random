@@ -5,5 +5,4 @@ export type RootStackParams = {
     WelcomeScreen: undefined;
     QuizScreen: { userName: string };
     SummaryScreen: { userName: string, score: number, questions: Quiz[] };
-    WinnerScreen: { userScores: UserScore[] }
 };

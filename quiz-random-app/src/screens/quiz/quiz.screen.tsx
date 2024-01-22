@@ -5,8 +5,6 @@ import React, {
 import {
     View,
     StyleSheet,
-    Button,
-    SafeAreaView,
     Text,
     TouchableOpacity
 } from "react-native";

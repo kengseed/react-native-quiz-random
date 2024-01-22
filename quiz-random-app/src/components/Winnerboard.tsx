@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import React from "react";
 import Leaderboard from "react-native-leaderboard";
 import UserScore from "../models/userScore.model";
 
@@ -12,7 +11,9 @@ const Winnerboard: React.FC<UserScore> = ({
     userName,
     score
 }) => {
-    leaderData.push({ userName: userName, score: score, icon: "https://cdn.dribbble.com/users/223408/screenshots/2134810/me-dribbble-size-001-001_1x.png" });
+    if (userName.trim().length > 0) {
+        leaderData.push({ userName: userName, score: score, icon: "https://cdn.dribbble.com/users/223408/screenshots/2134810/me-dribbble-size-001-001_1x.png" });
+    }
 
     const props = {
         labelBy: 'userName',

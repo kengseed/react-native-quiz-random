@@ -15,8 +15,7 @@
     - Question Text
     - Answer Selector
   3. Score Summary Screen
-    - Summary Text
     - Back Home Button
-  4. Winner Screen
-    - Show Users score to LeaderBoard
+    - Summary Text
+    - Show Leaderboard
   
